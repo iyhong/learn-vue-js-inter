@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader />
     <TodoInput />
-    <TodoList />
+    <TodoList :propsdata="todoItems" />
     <TodoFooter />
   </div>
 </template>
@@ -14,6 +14,20 @@ import TodoInput from './components/TodoInput.vue'
 import TodoList from './components/TodoList.vue'
 
 export default {
+  data() {
+    return {
+      todoItems: [],
+    }
+  },
+  created() {
+    if (localStorage.length > 0) {
+      for (var i = 0; i < localStorage.length; i++) {
+        console.log(localStorage.key(i))
+        let todoItem = JSON.parse(localStorage.getItem(localStorage.key(i)))
+        this.todoItems.push(todoItem)
+      }
+    }
+  },
   components: { TodoHeader, TodoInput, TodoList, TodoFooter },
 }
 </script>

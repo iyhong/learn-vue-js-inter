@@ -3,7 +3,7 @@
     <ul>
       <li
         class="shadow"
-        v-for="(todoItem, index) in todoItems"
+        v-for="(todoItem, index) in propsdata"
         :key="todoItem.item"
       >
         <i
@@ -24,20 +24,7 @@
 
 <script>
 export default {
-  created() {
-    if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
-        console.log(localStorage.key(i))
-        let todoItem = JSON.parse(localStorage.getItem(localStorage.key(i)))
-        this.todoItems.push(todoItem)
-      }
-    }
-  },
-  data() {
-    return {
-      todoItems: [],
-    }
-  },
+  props: ['propsdata'],
   methods: {
     removeTodo(todoItem, index) {
       console.log(todoItem, index)
