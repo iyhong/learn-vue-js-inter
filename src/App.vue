@@ -7,7 +7,7 @@
       @removeItem="removeOneItem"
       @toggleItem="toggleOneItem"
     />
-    <TodoFooter />
+    <TodoFooter @clearItems="clearAllItems" />
   </div>
 </template>
 
@@ -49,6 +49,10 @@ export default {
       this.todoItems[index].completed = !todoItem.completed
       localStorage.removeItem(todoItem.item)
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+    },
+    clearAllItems() {
+      localStorage.clear()
+      this.todoItems = []
     },
   },
   components: { TodoHeader, TodoInput, TodoList, TodoFooter },

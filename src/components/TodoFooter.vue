@@ -8,7 +8,7 @@
 export default {
   methods: {
     clearAll() {
-      localStorage.clear()
+      this.$emit('clearItems')
     },
   },
 }
