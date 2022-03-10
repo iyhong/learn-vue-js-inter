@@ -2,7 +2,11 @@
   <div id="app">
     <TodoHeader />
     <TodoInput @addTodoItem="addOneItem" />
-    <TodoList :propsdata="todoItems" @removeItem="removeOneItem" />
+    <TodoList
+      :propsdata="todoItems"
+      @removeItem="removeOneItem"
+      @toggleItem="toggleOneItem"
+    />
     <TodoFooter />
   </div>
 </template>
@@ -40,6 +44,11 @@ export default {
     removeOneItem(todoItem, index) {
       this.todoItems.splice(index, 1)
       localStorage.removeItem(todoItem.item)
+    },
+    toggleOneItem(todoItem, index) {
+      this.todoItems[index].completed = !todoItem.completed
+      localStorage.removeItem(todoItem.item)
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
     },
   },
   components: { TodoHeader, TodoInput, TodoList, TodoFooter },

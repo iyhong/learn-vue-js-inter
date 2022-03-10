@@ -8,7 +8,7 @@
       >
         <i
           class="checkBtn fa-solid fa-check"
-          :class="{ checkBtnCompleted: todoItem.check }"
+          :class="{ checkBtnCompleted: todoItem.completed }"
           @click="toggleComplete(todoItem, index)"
         />
         <span :class="{ textCompleted: todoItem.completed }">
@@ -30,10 +30,8 @@ export default {
       console.log(todoItem, index)
       this.$emit('removeItem', todoItem, index)
     },
-    toggleComplete(todoItem) {
-      todoItem.completed = !todoItem.completed
-      localStorage.removeItem(todoItem.item)
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+    toggleComplete(todoItem, index) {
+      this.$emit('toggleItem', todoItem, index)
     },
   },
 }
