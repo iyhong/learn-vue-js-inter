@@ -52,7 +52,6 @@ export default {
         this.$emit('addTodoItem', this.newTodoItem)
         this.clearInput()
       } else {
-        console.log(this.$refs)
         this.$refs.span.focus()
         this.showModal = true
       }

@@ -25,7 +25,7 @@ export default {
   },
   created() {
     if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++) {
         console.log(localStorage.key(i))
         let todoItem = JSON.parse(localStorage.getItem(localStorage.key(i)))
         this.todoItems.push(todoItem)
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     addOneItem(newTodoItem) {
-      var obj = {
+      const obj = {
         completed: false,
         item: newTodoItem,
       }
