@@ -1,13 +1,34 @@
 <template>
-  <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" @keydown.enter="addTodo" />
+  <div class="inputBox shadow" @keydown.esc="showModal = false">
+    <input
+      type="text"
+      ref="input"
+      v-model="newTodoItem"
+      @keydown.enter="addTodo"
+    />
     <!-- <button @click="addTodo">add</button> -->
-    <span class="addContainer" @click="addTodo">
+    <span
+      class="addContainer"
+      @click="addTodo"
+      ref="span"
+      tabindex="1"
+      @keydown.esc="closeModal"
+    >
       <i class="fa-solid fa-plus"></i>
     </span>
-    <AlertModal :show="showModal" @close="showModal = false">
+    <AlertModal :show="showModal" @close="closeModal">
       <template #header>
-        <h3>custom header</h3>
+        <h3>
+          경고!!
+          <i
+            class="closeModalBtn fa-solid fa-circle-xmark"
+            @click="closeModal"
+          ></i>
+        </h3>
+      </template>
+
+      <template #body>
+        <p>공백으로 추가할 수 없습니다!</p>
       </template>
     </AlertModal>
   </div>
@@ -27,16 +48,21 @@ export default {
   },
   methods: {
     addTodo() {
-      if (this.newTodoItem !== '') {
+      if (this.newTodoItem.trim() !== '') {
         this.$emit('addTodoItem', this.newTodoItem)
         this.clearInput()
       } else {
-        console.log('tt')
+        console.log(this.$refs)
+        this.$refs.span.focus()
         this.showModal = true
       }
     },
     clearInput() {
       this.newTodoItem = ''
+    },
+    closeModal() {
+      this.showModal = false
+      this.$refs.input.focus()
     },
   },
 }
@@ -69,5 +95,9 @@ input:focus {
 .addBtn {
   color: white;
   vertical-align: middle;
+}
+
+.closeModalBtn {
+  color: #42b983;
 }
 </style>
