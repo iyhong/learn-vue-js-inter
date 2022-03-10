@@ -5,14 +5,24 @@
     <span class="addContainer" @click="addTodo">
       <i class="fa-solid fa-plus"></i>
     </span>
+    <AlertModal :show="showModal" @close="showModal = false">
+      <template #header>
+        <h3>custom header</h3>
+      </template>
+    </AlertModal>
   </div>
 </template>
 
 <script>
+import AlertModal from '../common/AlertModal.vue'
 export default {
+  components: {
+    AlertModal,
+  },
   data() {
     return {
       newTodoItem: '',
+      showModal: false,
     }
   },
   methods: {
@@ -20,6 +30,9 @@ export default {
       if (this.newTodoItem !== '') {
         this.$emit('addTodoItem', this.newTodoItem)
         this.clearInput()
+      } else {
+        console.log('tt')
+        this.showModal = true
       }
     },
     clearInput() {
