@@ -3,7 +3,7 @@
     <TransitionGroup name="list" tag="ul">
       <li
         class="shadow"
-        v-for="(todoItem, index) in propsdata"
+        v-for="(todoItem, index) in this.$store.state.todoItems"
         :key="todoItem.item"
       >
         <i
