@@ -15,6 +15,9 @@ import TodoList from './components/TodoList.vue'
 
 export default {
   components: { TodoHeader, TodoInput, TodoList, TodoFooter },
+  created() {
+    this.$store.dispatch('testActions', 'app.vue')
+  },
 }
 </script>
 

@@ -20,6 +20,7 @@ const storage = {
 export const store = new Vuex.Store({
   state: {
     todoItems: storage.fetch(),
+    testText: '',
   },
   mutations: {
     addOneItem(state, todoItem) {
@@ -44,6 +45,15 @@ export const store = new Vuex.Store({
     clearAllItems(state) {
       localStorage.clear()
       state.todoItems = []
+    },
+    changeText(state, newText) {
+      state.testText = newText
+    },
+  },
+  actions: {
+    testActions(context, newText) {
+      console.log(context)
+      context.commit('changeText', newText)
     },
   },
 })

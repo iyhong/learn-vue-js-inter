@@ -40,6 +40,9 @@ export default {
   components: {
     AlertModal,
   },
+  created() {
+    this.$store.dispatch('testActions', 'input.vue')
+  },
   data() {
     return {
       newTodoItem: '',
