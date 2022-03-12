@@ -3,7 +3,7 @@
     <TransitionGroup name="list" tag="ul">
       <li
         class="shadow"
-        v-for="(todoItem, index) in this.$store.state.todoItems"
+        v-for="(todoItem, index) in this.todoItems"
         :key="todoItem.item"
       >
         <i
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
+
 export default {
   methods: {
     removeTodo(todoItem, index) {
@@ -31,6 +33,13 @@ export default {
     toggleComplete(todoItem, index) {
       this.$store.commit('toggleOneItem', { todoItem, index })
     },
+  },
+  computed: {
+    ...mapState(['todoItems']),
+    ...mapGetters(['sotredTodoItem']),
+    // todoItems() {
+    //   return this.$store.getters.sotredTodoItem
+    // },
   },
 }
 </script>
