@@ -9,12 +9,12 @@
         <i
           class="checkBtn fa-solid fa-check"
           :class="{ checkBtnCompleted: todoItem.completed }"
-          @click="toggleComplete(todoItem, index)"
+          @click="toggleComplete({ todoItem, index })"
         />
         <span :class="{ textCompleted: todoItem.completed }">
           {{ todoItem.item }}
         </span>
-        <span class="removeBtn" @click="removeTodo(todoItem, index)">
+        <span class="removeBtn" @click="removeTodo({ todoItem, index })">
           <i class="fa-solid fa-trash-can" />
         </span>
       </li>
@@ -23,16 +23,14 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapMutations } from 'vuex'
 
 export default {
   methods: {
-    removeTodo(todoItem, index) {
-      this.$store.commit('removeOneItem', { todoItem, index })
-    },
-    toggleComplete(todoItem, index) {
-      this.$store.commit('toggleOneItem', { todoItem, index })
-    },
+    ...mapMutations({
+      removeTodo: 'removeOneItem',
+      toggleComplete: 'toggleOneItem',
+    }),
   },
   computed: {
     ...mapState(['todoItems']),
