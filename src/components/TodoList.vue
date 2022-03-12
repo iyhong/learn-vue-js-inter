@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   methods: {
@@ -33,11 +33,10 @@ export default {
     }),
   },
   computed: {
-    ...mapState(['todoItems']),
+    ...mapState({
+      todoItems: (state) => state.todo.todoItems,
+    }),
     ...mapGetters(['sotredTodoItem']),
-    // todoItems() {
-    //   return this.$store.getters.sotredTodoItem
-    // },
   },
 }
 </script>

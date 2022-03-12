@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <DemoTest />
     <TodoHeader />
     <TodoInput />
     <TodoList />
@@ -8,13 +9,14 @@
 </template>
 
 <script>
+import DemoTest from './components/DemoTest.vue'
 import TodoFooter from './components/TodoFooter.vue'
 import TodoHeader from './components/TodoHeader.vue'
 import TodoInput from './components/TodoInput.vue'
 import TodoList from './components/TodoList.vue'
 
 export default {
-  components: { TodoHeader, TodoInput, TodoList, TodoFooter },
+  components: { TodoHeader, TodoInput, TodoList, TodoFooter, DemoTest },
   created() {
     this.$store.dispatch('testActions', 'app.vue')
   },

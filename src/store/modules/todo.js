@@ -1,8 +1,3 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
 const storage = {
   fetch() {
     const arr = []
@@ -17,7 +12,7 @@ const storage = {
   },
 }
 
-export const store = new Vuex.Store({
+export default {
   state: {
     todoItems: storage.fetch(),
     testText: '',
@@ -35,6 +30,7 @@ export const store = new Vuex.Store({
         item: todoItem,
       }
       localStorage.setItem(todoItem, JSON.stringify(obj))
+      console.log(state)
       state.todoItems.push(obj)
     },
     removeOneItem(state, payload) {
@@ -61,4 +57,4 @@ export const store = new Vuex.Store({
       context.commit('changeText', newText)
     },
   },
-})
+}
